@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Alert</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black;
+      color: lime;
+      text-align: center;
+      padding: 50px;
+      transition: all 0.5s ease;
+    }
+    .upside-down {
+      transform: rotate(180deg);
+    }
+    .distorted-text {
+      animation: glitch 0.3s infinite;
+    }
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
+    }
+    #message {
+      font-size: 24px;
+      margin-top: 30px;
+    }
+    #final {
+      display: none;
+      font-size: 28px;
+      color: red;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="main-title">** SYSTEM WARNING **</h1>
+  <p id="message">Your phone is being accessed remotely...<br>Deleting data in 5 seconds!</p>
+  <p id="final">Relax! Next time dhyan se link kholna...</p>
+  <audio id="prankSound" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" autoplay loop></audio>
+
+  <script>
+    const prankSound = document.getElementById("prankSound");
+    prankSound.play();
+
+    setTimeout(() => {
+      document.getElementById("message").innerText = "WARNING: SYSTEM BREACH DETECTED!";
+    }, 1000);
+
+    setTimeout(() => {
+      document.body.classList.add("upside-down");
+      document.getElementById("main-title").classList.add("distorted-text");
+      document.getElementById("message").classList.add("distorted-text");
+      document.getElementById("message").innerText = "System overload... Display malfunctioning...";
+    }, 120000);
+
+    setTimeout(() => {
+      prankSound.pause();
+      document.body.classList.remove("upside-down");
+      document.getElementById("main-title").classList.remove("distorted-text");
+      document.getElementById("message").style.display = "none";
+      document.getElementById("final").style.display = "block";
+    }, 240000);
+  </script>
+</body>
+</html>
